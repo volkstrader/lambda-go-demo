@@ -63,6 +63,7 @@ ENV AWS_SECRET_ACCESS_KEY=$AWS_SECRET
 ENV AWS_DEFAULT_REGION=us-west-2
 
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH" && mkdir /root/.ssh && chmod 600 /root/.ssh && cd /root
+RUN echo "Host github.com\n\tHostName github.com\n\tUser git\n\IdentityFile ~/.ssh/config" > /root/.ssh/config
 RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | bin/bash
 RUN curl -O https://bootstrap.pypa.io/get-pip.py | /bin/bash
 RUN apt-get update && apt-get install -y python-dev && apt-get install -y groff
